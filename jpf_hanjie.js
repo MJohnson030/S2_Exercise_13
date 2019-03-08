@@ -5,8 +5,8 @@
    Tutorial 11
    Tutorial Case
 
-   Author: 
-   Date:   
+   Author: Millione Johnson
+   Date:  3/7/19 
 
    Global Variables
    ================
@@ -53,6 +53,60 @@
       multi-dimensional array, puzzle.
 	
 */
+
+//run the init function when the page loads 
+window.onload = init;
+
+var puzzleCells;
+
+function init() {
+      //insert the title for the first puzzle
+      document.getElementById("puzzleTitle").innerHTML = "Puzzle 1";
+
+      //insert the HTML code for the first puzzle table 
+      document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle1Hint, puzzle1Rating, puzzle1);
+
+      //add event handlers for the puzzle buttons
+      var puzzleButtons = document.getElementsByClassName("puzzles");
+      for (var i = 0; i < puzzleButtons.length; i++) {
+            puzzleButtons[i].onclick = swapPuzzle;
+      }
+setupPuzzle();
+}
+
+function swapPuzzle(e) {
+ //retrieve the ID of the clicked buttton
+ var puzzleID = e.target.id;
+
+ //retrieve the value of the clicked button
+ var puzzleTitle = e.target.value;
+ document.getElementById("puzzleTitle").innerHTML = puzzleTitle;
+
+ //display the puzzle based on the value of the puzzleID variable
+ switch (puzzleID) {
+       case "puzzle1":
+            document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle1Hint, puzzle1Rating, puzzle1); 
+             break;
+       case "puzzle2":
+            document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle2Hint, puzzle2Rating, puzzle2);
+            break;
+      case "puzzle3":
+            document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle3Hint, puzzle3Rating, puzzle3);
+             break;
+ }
+ setupPuzzle();
+}
+
+function setupPuzzle() {
+    //match all of the data cells in the puzzle
+    puzzleCells = document.querySelectorAll("table#hanjieGrid td");
+
+    //set the intiial color of each cell to gold
+    for (var i = 0; i < puzzleCells.lenght; i++ ){
+          puzzleCells[i].style.backgroundColor = "rgb(233, 207, 29)";
+    }
+}
+
 
 
 
